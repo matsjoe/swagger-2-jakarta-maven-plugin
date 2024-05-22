@@ -18,9 +18,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:kongchen/swagger-maven-plugin.git</connection>
-        <url>scm:git:git@github.com:kongchen/swagger-maven-plugin.git</url>
-        <developerConnection>scm:git:git@github.com:kongchen/swagger-maven-plugin.git</developerConnection>
+        <connection>scm:git:git@github.com:big-armor/swagger-2-jakarta-maven-plugin.git</connection>
+        <url>scm:git:git@github.com:big-armor/swagger-2-jakarta-maven-plugin.git</url>
+        <developerConnection>scm:git:git@github.com:big-armor/swagger-2-jakarta-maven-plugin.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
@@ -58,7 +58,7 @@
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
         <github.global.server>github</github.global.server>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonatypeOssDistMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/</sonatypeOssDistMgmtSnapshotsUrl>
+        <sonatypeOssDistMgmtSnapshotsUrl>https://s01.oss.sonatype.org/content/repositories/snapshots</sonatypeOssDistMgmtSnapshotsUrl>
 
         <!-- Dependency versions -->
         <maven.version>2.2.1</maven.version>
@@ -475,7 +475,7 @@
         <repository>
             <id>sonatype-nexus-staging</id>
             <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
 </project>
