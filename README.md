@@ -1,17 +1,23 @@
-# Swagger Maven Plugin
-[![Build Status](https://travis-ci.org/kongchen/swagger-maven-plugin.png)](https://travis-ci.org/kongchen/swagger-maven-plugin)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.kongchen/swagger-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.kongchen/swagger-maven-plugin)
+# Swagger 2 Jakarta Maven Plugin
 
-This plugin enables your Swagger-annotated project to generate **Swagger specs** and **customizable, templated static documents** during the maven build phase. Unlike swagger-core, swagger-maven-plugin does not actively serve the spec with the rest of the application; it generates the spec as a build artifact to be used in downstream Swagger tooling.
+This is a refactor of the original [swagger-maven-plugin](https://github.com/kongchen/swagger-maven-plugin) with support for Jakarta Servlets (jakarta.ws.rs) namespaces. It was forked from a 3.1.9-SNAPSHOT of the original repository. A few tests were fixed, but all other features remain the same.
+
+Note: There is an inheritted property unit test that is flagging. It was not fixed.
+
+
+# Original README slightly updated below
+
+This plugin enables your Swagger-annotated project to generate **Swagger specs** and **customizable, templated static documents** during the maven build phase. Unlike swagger-core, swagger-2-jakarta-maven-plugin does not actively serve the spec with the rest of the application; it generates the spec as a build artifact to be used in downstream Swagger tooling.
 
 # Features
 
 * Supports [Swagger Spec 2.0](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md)
-* Supports [SpringMvc](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html) & [JAX-RS](https://jax-rs-spec.java.net/)
+* Supports [ & [SpringMvc](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html) & [JAX-RS](https://jax-rs-spec.java.net/) with Jakarta-Servlets 5.0
 * Quickly generates *[swagger.json](https://github.com/kongchen/swagger-maven-example/blob/master/generated/swagger-ui/swagger.json)* and [static document](http://htmlpreview.github.io/?https://raw.github.com/kongchen/swagger-maven-example/master/generated/document.html) by `mvn compile`
 * Use [Handlebars](http://handlebarsjs.com/) as template to customize the static document.
 
 # Versions
+- [3.1.9](https://github.com/big-armor/swagger-2-jakarta-maven-plugin) Supports Jakarta Servlets (renaming from javax.ws.rs to jakarta.ws.rs) for Tomcat 10, etc
 - [3.1.0](https://github.com/kongchen/swagger-maven-plugin/) supports Swagger Spec [2.0](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md), support JAX-RS & SpingMVC. (**ACTIVE!**)
 - [3.0.1](https://github.com/kongchen/swagger-maven-plugin/tree/swagger-core_com.wordnik_namespaces/) supports Swagger Spec [2.0](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md), support JAX-RS & SpingMVC. (**ACTIVE!**)
 - [2.3.4](https://github.com/kongchen/swagger-maven-plugin/tree/spec1.2) supports Swagger Spec [1.2](https://github.com/swagger-api/swagger-spec/blob/master/versions/1.2.md), support JAX-RS & SpringMVC. (**Lazily maintained**)
@@ -28,8 +34,8 @@ Import the plugin in your project by adding following configuration in your `plu
 <build>
 	<plugins>
 		<plugin>
-			<groupId>com.github.kongchen</groupId>
-			<artifactId>swagger-maven-plugin</artifactId>
+			<groupId>com.bigarmor</groupId>
+			<artifactId>swagger-2-jakarta-maven-plugin</artifactId>
 			<version>${swagger-maven-plugin-version}</version>
 			<configuration>
 				<apiSources>
@@ -65,7 +71,7 @@ The `executions` block is used to specify the phase of the build lifecycle you w
 | **name** | **description** |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `springmvc` | Tell the plugin your project is a JAX-RS(`false`) or a SpringMvc(`true`) project |
-| `locations` **required**| Classes containing Swagger's annotation ```@Api```, or packages containing those classes can be configured here. Each item must be located inside a <location> tag. Example: `<locations><location>com.github.kongchen.swagger.sample.wordnik.resource</location><location>com.github.kongchen.swagger.sample.wordnik.resource2</location></locations>` |
+| `locations` **required**| Classes containing Swagger's annotation ```@Api```, or packages containing those classes can be configured here. Each item must be located inside a <location> tag. Example: `<locations><location>com.bigarmor.swagger.sample.wordnik.resource</location><location>com.bigarmor.swagger.sample.wordnik.resource2</location></locations>` |
 | `schemes` | The transfer protocol of the API. Values MUST be from the list: `"http"`, `"https"`, `"ws"`, `"wss"`. Each value must be located inside its own `<scheme>` tag. Example: `<schemes><scheme>http</scheme><scheme>https</scheme></schemes>` |
 | `host` | The host (name or IP) serving the API. This MUST be the host only and does not include the scheme nor sub-paths. It MAY include a port.  The host does not support [path templating](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#pathTemplating).|
 | `basePath` | The base path on which the API is served, which is relative to the host. The value MUST start with a leading slash (/). The basePath does not support [path templating](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#pathTemplating). |
@@ -77,7 +83,7 @@ The `executions` block is used to specify the phase of the build lifecycle you w
 | `outputFormats` | The format types of the generated swagger spec. Valid values are `json`, `yaml` or both `json,yaml`. The `json` format is default.|
 | `swaggerDirectory` | The directory of generated `swagger.json` file. If null, no `swagger.json` will be generated. |
 | `swaggerFileName` | The filename of generated `filename.json` file. If null, `swagger.json` will be generated. |
-| `swaggerApiReader` | If not null, the value should be a full name of the class implementing `com.github.kongchen.swagger.docgen.reader.ClassSwaggerReader`. This allows you to flexibly implement/override the reader's implementation. `com.github.kongchen.swagger.docgen.reader.SwaggerReader` can be used to strictly use the official Swagger reader in order to generate the exact same output as Swagger''s runtime generation (with all its bugs). Default is `com.github.kongchen.swagger.docgen.reader.JaxrsReader`.  |
+| `swaggerApiReader` | If not null, the value should be a full name of the class implementing `com.bigarmor.swagger.docgen.reader.ClassSwaggerReader`. This allows you to flexibly implement/override the reader's implementation. `com.bigarmor.swagger.docgen.reader.SwaggerReader` can be used to strictly use the official Swagger reader in order to generate the exact same output as Swagger''s runtime generation (with all its bugs). Default is `com.bigarmor.swagger.docgen.reader.JaxrsReader`.  |
 | `attachSwaggerArtifact` | If enabled, the generated `swagger.json` file will be attached as a maven artifact. The `swaggerDirectory`'s name will be used as an artifact classifier. Default is `false`. |
 | `modelSubstitute` | The model substitute file's path, see more details [below](#model-substitution)|
 | `typesToSkip` | Nodes of class names to explicitly skip during parameter processing. More details [below](#typesToSkip)|
@@ -298,8 +304,8 @@ There's a [sample here](https://github.com/swagger-maven-plugin/swagger-maven-ex
 <build>
 <plugins>
 <plugin>
-    <groupId>com.github.kongchen</groupId>
-    <artifactId>swagger-maven-plugin</artifactId>
+    <groupId>com.bigarmor</groupId>
+    <artifactId>swagger-2-jakarta-maven-plugin</artifactId>
     <version>3.0.0</version>
     <configuration>
         <apiSources>
@@ -441,7 +447,7 @@ to check which package introduces the one conflicts with yours, and then you can
 
 **Here's an example:**
 
-To exclude `javax.ws.rs:jsr311-api:jar:1.1.1:compile` from `swagger-jaxrs_2.10`:
+To exclude `jakarta.ws.rs:jsr311-api:jar:1.1.1:compile` from `swagger-jaxrs_2.10`:
 
 ```xml
 <dependency>
@@ -450,7 +456,7 @@ To exclude `javax.ws.rs:jsr311-api:jar:1.1.1:compile` from `swagger-jaxrs_2.10`:
     <version>1.3.2</version>
     <exclusions>
         <exclusion>
-            <groupId>javax.ws.rs</groupId>
+            <groupId>jakarta.ws.rs</groupId>
             <artifactId>jsr311-api</artifactId>
         </exclusion>
     </exclusions>

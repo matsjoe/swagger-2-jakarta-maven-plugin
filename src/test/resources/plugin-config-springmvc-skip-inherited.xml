@@ -2,8 +2,8 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.github.kongchen</groupId>
-                <artifactId>swagger-maven-plugin</artifactId>
+                <groupId>com.bigarmor</groupId>
+                <artifactId>swagger-2-jakarta-maven-plugin</artifactId>
                 <version>3.0-M2-SNAPSHOT</version>
                 <configuration>
                     <apiSources>

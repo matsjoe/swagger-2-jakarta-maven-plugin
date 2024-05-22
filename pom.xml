@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.kongchen</groupId>
-    <artifactId>swagger-maven-plugin</artifactId>
+    <groupId>com.bigarmor</groupId>
+    <artifactId>swagger-2-jakarta-maven-plugin</artifactId>
     <version>3.1.9-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     <name>Swagger Maven Plugin</name>
@@ -71,7 +71,7 @@
         <springframework.version>4.3.7.RELEASE</springframework.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <version.jersey-server>1.13</version.jersey-server>
-        <version.javax.ws.rs-api>2.0.1</version.javax.ws.rs-api>
+        <version.jakarta.ws.rs.version>3.1.0</version.jakarta.ws.rs.version>
         <version.maven-plugin-annotations>3.3</version.maven-plugin-annotations>
         <!-- Test dependency versions -->
         <maven-testing-harness.version>1.3</maven-testing-harness.version>
@@ -86,14 +86,14 @@
         <version.maven-release-plugin>2.5.3</version.maven-release-plugin>
         <version.plexus-component-metadata>1.5.5</version.plexus-component-metadata>
         <version.maven-compiler-plugin>2.3.2</version.maven-compiler-plugin>
-        <version.maven-plugin-plugin>3.3</version.maven-plugin-plugin>
+        <version.maven-plugin-plugin>3.6.1</version.maven-plugin-plugin>
         <version.animal-sniffer-plugin>1.14</version.animal-sniffer-plugin>
         <version.maven-source-plugin>2.1.2</version.maven-source-plugin>
         <version.maven-javadoc-plugin>2.7</version.maven-javadoc-plugin>
         <version.maven-gpg-plugin>1.6</version.maven-gpg-plugin>
         <version.plexus-javadoc>1.0</version.plexus-javadoc>
         <version.slf4j-nop>1.7.25</version.slf4j-nop>
-        <kotlin.version>1.2.61</kotlin.version>
+        <kotlin.version>1.3.72</kotlin.version>
     </properties>
 
     <dependencies>
@@ -183,9 +183,9 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>${version.javax.ws.rs-api}</version>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>${version.jakarta.ws.rs.version}</version>
         </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
@@ -336,27 +336,27 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>animal-sniffer-maven-plugin</artifactId>
                 <version>${version.animal-sniffer-plugin}</version>
                 <configuration>
                     <signature>
                         <groupId>org.codehaus.mojo.signature</groupId>
-                        <artifactId>java16-sun</artifactId>
+                        <artifactId>java17-sun</artifactId>
                         <version>1.0</version>
                     </signature>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>check-java16-sun</id>
+                        <id>check-java17-sun</id>
                         <phase>test</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>

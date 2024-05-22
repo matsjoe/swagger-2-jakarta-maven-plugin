@@ -6,7 +6,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.ws.rs.*;
+import jakarta.ws.rs.*;
 import java.util.List;
 
 /**
@@ -38,10 +38,10 @@ public class MyBean extends MyParentBean {
 
     @QueryParam(value = "listValue")
     private List<String> listValue;
-    
+
     @BeanParam
     private MyNestedBean nestedBean;
-    
+
     /**
      * This field is to test that bean params using constructor injection behave
      * correctly. It's also nested just to avoid adding too much test code.
@@ -52,7 +52,7 @@ public class MyBean extends MyParentBean {
     @ApiParam(value = "testIntegerAllowableValues", defaultValue = "25", allowableValues = "25, 50, 100")
     @QueryParam("testIntegerAllowableValues")
     public Integer testIntegerAllowableValues;
-    
+
     /**
      * This field's allowableValues, required, pattern, and defaultValue should
      * be derived based on its JAX-RS and validation annotations.
@@ -116,23 +116,23 @@ public class MyBean extends MyParentBean {
     public MyNestedBean getNestedBean() {
         return nestedBean;
     }
-    
+
     public void setNestedBean(MyNestedBean nestedBean) {
         this.nestedBean = nestedBean;
     }
-    
+
     public MyConstructorInjectedNestedBean getConstructorInjectedNestedBean() {
         return constructorInjectedNestedBean;
     }
-    
+
     public void setConstructorInjectedNestedBean(MyConstructorInjectedNestedBean constructorInjectedNestedBean) {
         this.constructorInjectedNestedBean = constructorInjectedNestedBean;
     }
-    
+
     public int getConstrainedField() {
         return constrainedField;
     }
-    
+
     public void setConstrainedField(int constrainedField) {
         this.constrainedField = constrainedField;
     }

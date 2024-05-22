@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class KotlinController {
 
+
     @GetMapping("/getWithParam")
     fun getWithParam(@RequestParam optionalParam: Boolean = false) {
     }
