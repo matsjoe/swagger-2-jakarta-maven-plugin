@@ -306,7 +306,7 @@ There's a [sample here](https://github.com/swagger-maven-plugin/swagger-maven-ex
 <plugin>
     <groupId>com.bigarmor</groupId>
     <artifactId>swagger-2-jakarta-maven-plugin</artifactId>
-    <version>3.0.0</version>
+    <version>3.1.9</version>
     <configuration>
         <apiSources>
             <apiSource>
